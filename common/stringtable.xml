@@ -1,23 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project name="Legion Studios">
     <Package name="common">
-        <Key ID="STR_ls_common_enabled">
-            <English>Enabled</English>
-            <Czech>Povoleno</Czech>
-            <French>Activé</French>
-            <Spanish>Activado</Spanish>
-            <Italian>Attivato</Italian>
-            <Polish>Włączone</Polish>
-            <Portuguese>Ativado</Portuguese>
-            <Russian>Включено</Russian>
-            <German>Aktiviert</German>
-            <Korean>활성화</Korean>
-            <Japanese>有効化</Japanese>
-            <Chinese>啟用</Chinese>
-            <Chinesesimp>启用</Chinesesimp>
-            <Turkish>Etkin</Turkish>
-            <Ukrainian>Увімкнено</Ukrainian>
-        </Key>
+        <!-- Credit: https://github.com/acemod/ACE3/blob/master/addons/common/stringtable.xml#L623-L639 -->
         <Key ID="STR_ls_common_disabled">
             <English>Disabled</English>
             <Czech>Zakázáno</Czech>
@@ -34,6 +18,24 @@
             <Chinesesimp>停用</Chinesesimp>
             <Turkish>Devre Dışı</Turkish>
             <Ukrainian>Вимкнено</Ukrainian>
+        </Key>
+        <!-- Credit: https://github.com/acemod/ACE3/blob/master/addons/common/stringtable.xml#L787-L803 -->
+        <Key ID="STR_ls_common_enabled">
+            <English>Enabled</English>
+            <Czech>Povoleno</Czech>
+            <French>Activé</French>
+            <Spanish>Activado</Spanish>
+            <Italian>Attivato</Italian>
+            <Polish>Włączone</Polish>
+            <Portuguese>Ativado</Portuguese>
+            <Russian>Включено</Russian>
+            <German>Aktiviert</German>
+            <Korean>활성화</Korean>
+            <Japanese>有効化</Japanese>
+            <Chinese>啟用</Chinese>
+            <Chinesesimp>启用</Chinesesimp>
+            <Turkish>Etkin</Turkish>
+            <Ukrainian>Увімкнено</Ukrainian>
         </Key>
         <Key ID="STR_ls_common_invalidValue">
             <English>Invalid value</English>
