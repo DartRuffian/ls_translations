@@ -7,6 +7,30 @@
         <Key ID="STR_ls_modules_activeCamo_cannotDeactivate">
             <English>Object cannot deactivate active camo</English>
         </Key>
+        <Key ID="STR_ls_modules_dispenserGroup_group_label">
+            <English>Group</English>
+        </Key>
+        <Key ID="STR_ls_modules_dispenserGroup_group_tooltip">
+            <English>Select what group will be spawned by the droid dispenser when it activates</English>
+        </Key>
+        <Key ID="STR_ls_modules_dispenserGroup_customGroup_label">
+            <English>Custom Group</English>
+        </Key>
+        <Key ID="STR_ls_modules_dispenserGroup_customGroup_tooltip">
+            <English>Overwrites dispenser group if defined, takes array of unit class names.\nUse commas to separate classes, do not include spaces.\nE.g. ['ls_droid_b1','ls_droid_b2']</English>
+        </Key>
+        <Key ID="STR_ls_modules_radius_tooltip">
+            <English>Radius in meters</English>
+        </Key>
+        <Key ID="STR_ls_modules_lockState_label">
+            <English>Door Lock State</English>
+        </Key>
+        <Key ID="STR_ls_modules_lockState_tooltip">
+            <English>Door locked state to search for</English>
+        </Key>
+        <Key ID="STR_ls_modules_noDoorFound">
+            <English>No door found</English>
+        </Key>
         <Key ID="STR_ls_modules_noPlayer">
             <English>Unit must not be a player</English>
         </Key>
