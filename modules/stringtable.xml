@@ -34,6 +34,18 @@
         <Key ID="STR_ls_modules_lockState_tooltip">
             <English>Door locked state to search for</English>
         </Key>
+        <Key ID="STR_ls_modules_moduleAddReinsertAction">
+            <English>Add Reinsert Action</English>
+        </Key>
+        <Key ID="STR_ls_modules_moduleAreaHeal">
+            <English>Area Heal</English>
+        </Key>
+        <Key ID="STR_ls_modules_moduleDeleteGroups">
+            <English>Delete Empty Groups</English>
+        </Key>
+        <Key ID="STR_ls_modules_moduleToggleCamo">
+            <English>Toggle Active Camo</English>
+        </Key>
         <Key ID="STR_ls_modules_noDoorFound">
             <English>No door found</English>
         </Key>
