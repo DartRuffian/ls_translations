@@ -47,7 +47,7 @@
             <English>Toggle Active Camo</English>
         </Key>
         <Key ID="STR_ls_modules_noDoorFound">
-            <English>No door found</English>
+            <English>No open door found!</English>
         </Key>
         <Key ID="STR_ls_modules_noPlayer">
             <English>Unit must not be a player</English>
