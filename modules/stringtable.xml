@@ -46,8 +46,14 @@
         <Key ID="STR_ls_modules_moduleToggleCamo">
             <English>Toggle Active Camo</English>
         </Key>
+        <Key ID="STR_ls_modules_noClosedDoorFound">
+            <English>No closed door found!</English>
+        </Key>
         <Key ID="STR_ls_modules_noDoorFound">
-            <English>No open door found!</English>
+            <English>No door found!</English>
+        </Key>
+        <Key ID="STR_ls_modules_noOpenFound">
+            <English>No door found!</English>
         </Key>
         <Key ID="STR_ls_modules_noPlayer">
             <English>Unit must not be a player</English>
