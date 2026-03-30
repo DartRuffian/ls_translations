@@ -1,23 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project name="Legion Studios">
     <Package name="common">
-        <Key ID="STR_ls_common_enabled">
-            <English>Enabled</English>
-            <Czech>Povoleno</Czech>
-            <French>Activé</French>
-            <Spanish>Activado</Spanish>
-            <Italian>Attivato</Italian>
-            <Polish>Włączone</Polish>
-            <Portuguese>Ativado</Portuguese>
-            <Russian>Включено</Russian>
-            <German>Aktiviert</German>
-            <Korean>활성화</Korean>
-            <Japanese>有効化</Japanese>
-            <Chinese>啟用</Chinese>
-            <Chinesesimp>启用</Chinesesimp>
-            <Turkish>Etkin</Turkish>
-            <Ukrainian>Увімкнено</Ukrainian>
-        </Key>
+        <!-- Credit: https://github.com/acemod/ACE3/blob/master/addons/common/stringtable.xml#L623-L639 -->
         <Key ID="STR_ls_common_disabled">
             <English>Disabled</English>
             <Czech>Zakázáno</Czech>
@@ -35,8 +19,70 @@
             <Turkish>Devre Dışı</Turkish>
             <Ukrainian>Вимкнено</Ukrainian>
         </Key>
+        <!-- Credit: https://github.com/acemod/ACE3/blob/master/addons/common/stringtable.xml#L787-L803 -->
+        <Key ID="STR_ls_common_enabled">
+            <English>Enabled</English>
+            <Czech>Povoleno</Czech>
+            <French>Activé</French>
+            <Spanish>Activado</Spanish>
+            <Italian>Attivato</Italian>
+            <Polish>Włączone</Polish>
+            <Portuguese>Ativado</Portuguese>
+            <Russian>Включено</Russian>
+            <German>Aktiviert</German>
+            <Korean>활성화</Korean>
+            <Japanese>有効化</Japanese>
+            <Chinese>啟用</Chinese>
+            <Chinesesimp>启用</Chinesesimp>
+            <Turkish>Etkin</Turkish>
+            <Ukrainian>Увімкнено</Ukrainian>
+        </Key>
         <Key ID="STR_ls_common_invalidValue">
             <English>Invalid value</English>
+        </Key>
+        <!-- Credit: https://github.com/acemod/ACE3/blob/master/addons/common/stringtable.xml#L1096-L1113 -->
+        <Key ID="STR_ls_common_no">
+            <English>No</English>
+            <Czech>Ne</Czech>
+            <French>Non</French>
+            <Spanish>No</Spanish>
+            <Italian>No</Italian>
+            <Polish>Nie</Polish>
+            <Portuguese>Não</Portuguese>
+            <Russian>Нет</Russian>
+            <German>Nein</German>
+            <Korean>아니오</Korean>
+            <Japanese>いいえ</Japanese>
+            <Chinese>否</Chinese>
+            <Chinesesimp>否</Chinesesimp>
+            <Turkish>Hayır</Turkish>
+            <Hungarian>Nem</Hungarian>
+            <Ukrainian>Ні</Ukrainian>
+        </Key>
+        <Key ID="STR_ls_common_recievedTreatment">
+            <English>You have been fully healed</English>
+        </Key>
+        <Key ID="STR_ls_common_recievingTreatment">
+            <English>Recieving treatment...</English>
+        </Key>
+        <!-- Credit: https://github.com/acemod/ACE3/blob/master/addons/common/stringtable.xml#L1096-L1113 -->
+        <Key ID="STR_ls_common_yes">
+            <English>Yes</English>
+            <Czech>Ano</Czech>
+            <French>Oui</French>
+            <Spanish>Si</Spanish>
+            <Italian>Si</Italian>
+            <Polish>Tak</Polish>
+            <Portuguese>Sim</Portuguese>
+            <Russian>Да</Russian>
+            <German>Ja</German>
+            <Korean>예</Korean>
+            <Japanese>はい</Japanese>
+            <Chinese>是</Chinese>
+            <Chinesesimp>是</Chinesesimp>
+            <Turkish>Evet</Turkish>
+            <Hungarian>Igen</Hungarian>
+            <Ukrainian>Так</Ukrainian>
         </Key>
     </Package>
 </Project>

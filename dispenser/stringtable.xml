@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project name="Legion Studios">
+    <Package name="Dispenser">
+        <Key ID="STR_ls_dispenser_B1_displayName">
+            <English>Droid Dispenser (B1)</English>
+        </Key>
+        <Key ID="STR_ls_dispenser_B2_displayName">
+            <English>Droid Dispenser (B2)</English>
+        </Key>
+        <Key ID="STR_ls_dispenser_BX_displayName">
+            <English>Droid Dispenser (BX)</English>
+        </Key>
+        <Key ID="STR_ls_dispenser_activate">
+            <English>Activate Dispenser</English>
+        </Key>
+        <Key ID="STR_ls_dispenser_deactivate">
+            <English>Deactivate Dispenser</English>
+        </Key>
+        <Key ID="STR_ls_dispenser_description">
+            <English>A roughly cylindrical container, that could transport, dispense and possibly construct battle droids, used by the Trade Federation and later more predominantly by the Confederacy of Independent Systems during the Clone Wars to continually dispense a supply of battle droids.</English>
+        </Key>
+        <Key ID="STR_ls_dispenser_displayName">
+            <English>Droid Dispenser</English>
+        </Key>
+        <Key ID="STR_ls_dispenser_openHatch1">
+            <English>Open Hatch 1</English>
+        </Key>
+        <Key ID="STR_ls_dispenser_openHatch2">
+            <English>Open Hatch 2</English>
+        </Key>
+        <Key ID="STR_ls_dispenser_openHatch3">
+            <English>Open Hatch 3</English>
+        </Key>
+    </Package>
+</Project>
