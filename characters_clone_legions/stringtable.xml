@@ -1,14 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project name="Legion Studios">
     <Package name="characters_clone_legions">
+        <Key ID="STR_ls_characters_clone_legions_clone_104th">
+            <English>104th Wolfpack Battalion</English>
+        </Key>
+        <Key ID="STR_ls_characters_clone_legions_clone_13th">
+            <English>13th Iron Battalion</English>
+        </Key>
+        <Key ID="STR_ls_characters_clone_legions_clone_187th">
+            <English>187th Legion</English>
+        </Key>
+        <Key ID="STR_ls_characters_clone_legions_clone_212th">
+            <English>212th Attack Batallion</English>
+        </Key>
+        <Key ID="STR_ls_characters_clone_legions_clone_21st">
+            <English>21st Nova Corps</English>
+        </Key>
+        <Key ID="STR_ls_characters_clone_legions_clone_327th">
+            <English>327th Sky Corps</English>
+        </Key>
+        <Key ID="STR_ls_characters_clone_legions_clone_332nd">
+            <English>332nd Legion</English>
+        </Key>
+        <Key ID="STR_ls_characters_clone_legions_clone_34th">
+            <English>34th Clone Assassins</English>
+        </Key>
+        <Key ID="STR_ls_characters_clone_legions_clone_38th">
+            <English>38th Armored Division</English>
+        </Key>
+        <Key ID="STR_ls_characters_clone_legions_clone_41st">
+            <English>41st Elite Corps</English>
+        </Key>
+        <Key ID="STR_ls_characters_clone_legions_clone_41stRb">
+            <English>41st Ranger Battalion</English>
+        </Key>
+        <Key ID="STR_ls_characters_clone_legions_clone_41stgc">
+            <English>41st Green Company</English>
+        </Key>
+        <Key ID="STR_ls_characters_clone_legions_clone_442nd">
+            <English>442nd Siege Battalion</English>
+        </Key>
+        <Key ID="STR_ls_characters_clone_legions_clone_501st">
+            <English>501st Legion</English>
+        </Key>
+        <Key ID="STR_ls_characters_clone_legions_clone_5th">
+            <English>5th Security Fleet</English>
+        </Key>
+        <Key ID="STR_ls_characters_clone_legions_clone_612th">
+            <English>612th Attack Battalion</English>
+        </Key>
+        <Key ID="STR_ls_characters_clone_legions_clone_74th">
+            <English>74th Legion</English>
+        </Key>
+        <Key ID="STR_ls_characters_clone_legions_clone_91st">
+            <English>91st Recon Corps</English>
+        </Key>
+        <Key ID="STR_ls_characters_clone_legions_clone_9th">
+            <English>9th Assault Corps</English>
+        </Key>
         <Key ID="STR_ls_characters_clone_legions_clone_AT">
             <English>Clone Trooper (AT)</English>
         </Key>
         <Key ID="STR_ls_characters_clone_legions_clone_DC15S">
             <English>Clone Trooper (DC-15S)</English>
         </Key>
+        <Key ID="STR_ls_characters_clone_legions_clone_aiwhaSquad">
+            <English>Aiwha Squad</English>
+        </Key>
         <Key ID="STR_ls_characters_clone_legions_clone_arcPilot">
             <English>Clone Pilot (ARC-170)</English>
+        </Key>
+        <Key ID="STR_ls_characters_clone_legions_clone_bravoSquad">
+            <English>Bravo Squad</English>
         </Key>
         <Key ID="STR_ls_characters_clone_legions_clone_breacher">
             <English>Clone Trooper (Breacher)</English>
@@ -19,8 +82,20 @@
         <Key ID="STR_ls_characters_clone_legions_clone_commander">
             <English>Clone Commander</English>
         </Key>
+        <Key ID="STR_ls_characters_clone_legions_clone_coruscantGuard">
+            <English>Coruscant Guard</English>
+        </Key>
+        <Key ID="STR_ls_characters_clone_legions_clone_deltaSquad">
+            <English>Delta Squad</English>
+        </Key>
         <Key ID="STR_ls_characters_clone_legions_clone_demo">
             <English>Clone Demolitions Expert</English>
+        </Key>
+        <Key ID="STR_ls_characters_clone_legions_clone_du">
+            <English>Doom's Unit</English>
+        </Key>
+        <Key ID="STR_ls_characters_clone_legions_clone_du">
+            <English>Doom's Unit</English>
         </Key>
         <Key ID="STR_ls_characters_clone_legions_clone_heavyAA">
             <English>Clone Trooper (Missile AA)</English>
@@ -28,17 +103,35 @@
         <Key ID="STR_ls_characters_clone_legions_clone_heavyAT">
             <English>Clone Trooper (Missile AT)</English>
         </Key>
+        <Key ID="STR_ls_characters_clone_legions_clone_hornCompany">
+            <English>Horn Company</English>
+        </Key>
+        <Key ID="STR_ls_characters_clone_legions_clone_kCompany">
+            <English>327th K Company</English>
+        </Key>
         <Key ID="STR_ls_characters_clone_legions_clone_lieutenant">
             <English>Clone Lieutenant</English>
         </Key>
         <Key ID="STR_ls_characters_clone_legions_clone_medic">
             <English>Clone Medic</English>
         </Key>
+        <Key ID="STR_ls_characters_clone_legions_clone_misc">
+            <English>Miscellaneous</English>
+        </Key>
+        <Key ID="STR_ls_characters_clone_legions_clone_mpSkins">
+            <English>Multiplayer Skins</English>
+        </Key>
         <Key ID="STR_ls_characters_clone_legions_clone_officer">
             <English>Clone Officer</English>
         </Key>
+        <Key ID="STR_ls_characters_clone_legions_clone_omegaSquad">
+            <English>Omega Squad</English>
+        </Key>
         <Key ID="STR_ls_characters_clone_legions_clone_pilot">
             <English>Clone Pilot</English>
+        </Key>
+        <Key ID="STR_ls_characters_clone_legions_clone_rancor">
+            <English>RANCOR Battalion</English>
         </Key>
         <Key ID="STR_ls_characters_clone_legions_clone_rto">
             <English>Clone Trooper (RTO)</English>
@@ -57,6 +150,12 @@
         </Key>
         <Key ID="STR_ls_characters_clone_legions_clone_vwingPilot">
             <English>Clone Pilot (V-Wing)</English>
+        </Key>
+        <Key ID="STR_ls_characters_clone_legions_clone_yayaxSquad">
+            <English>Yayax Squad</English>
+        </Key>
+        <Key ID="STR_ls_characters_clone_legions_garLegions">
+            <English>Grand Army of the Republic Legions</English>
         </Key>
     </Package>
 </Project>

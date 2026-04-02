@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project name="Legion Studios">
     <Package name="common">
+        <Key ID="STR_ls_common_cis">
+            <English>Confederacy of Independent Systems</English>
+        </Key>
+        <Key ID="STR_ls_common_csf">
+            <English>Coruscant Security Force</English>
+        </Key>
         <!-- Credit: https://github.com/acemod/ACE3/blob/master/addons/common/stringtable.xml#L623-L639 -->
         <Key ID="STR_ls_common_disabled">
             <English>Disabled</English>
@@ -37,8 +43,32 @@
             <Turkish>Etkin</Turkish>
             <Ukrainian>Увімкнено</Ukrainian>
         </Key>
+        <Key ID="STR_ls_common_galacticEmpire">
+            <English>Galactic Empire</English>
+        </Key>
+        <Key ID="STR_ls_common_gar">
+            <English>Grand Army of the Republic</English>
+        </Key>
         <Key ID="STR_ls_common_invalidValue">
             <English>Invalid value</English>
+        </Key>
+        <Key ID="STR_ls_common_jabiim">
+            <English>Jabiim</English>
+        </Key>
+        <Key ID="STR_ls_common_jediOrder">
+            <English>Jedi Order</English>
+        </Key>
+        <Key ID="STR_ls_common_mandalorians">
+            <English>Mandalorians</English>
+        </Key>
+        <Key ID="STR_ls_common_memefor">
+            <English>Memefor</English>
+        </Key>
+        <Key ID="STR_ls_common_mercenaries">
+            <English>Mercenaries</English>
+        </Key>
+        <Key ID="STR_ls_common_newRepublic">
+            <English>New Republic</English>
         </Key>
         <!-- Credit: https://github.com/acemod/ACE3/blob/master/addons/common/stringtable.xml#L1096-L1113 -->
         <Key ID="STR_ls_common_no">
@@ -58,6 +88,15 @@
             <Turkish>Hayır</Turkish>
             <Hungarian>Nem</Hungarian>
             <Ukrainian>Ні</Ukrainian>
+        </Key>
+        <Key ID="STR_ls_common_orsf">
+            <English>Outland Regions Security Forces</English>
+        </Key>
+        <Key ID="STR_ls_common_pirates">
+            <English>Pirates</English>
+        </Key>
+        <Key ID="STR_ls_common_rebelAlliance">
+            <English>Rebel Alliance</English>
         </Key>
         <Key ID="STR_ls_common_recievedTreatment">
             <English>You have been fully healed</English>
