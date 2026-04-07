@@ -16,7 +16,7 @@ jobs:
     steps:
     - name: Checkout the source code
       uses: actions/checkout@v4
-      with:
-        submodules: true
+    - name: Install GitHub API
+      run: pip install github
     - name: Update translation progress
       run: python tools/update_issue.py
