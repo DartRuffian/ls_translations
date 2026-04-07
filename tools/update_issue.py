@@ -24,7 +24,7 @@ def update_translations(repo):
 def main():
     print("Obtaining token ...")
     try:
-        token = os.environ["GITHUB_TOKEN"]
+        token = os.environ["GH_TOKEN"]
         auth = Auth.Token(token)
         repo = Github(auth=auth).get_repo(REPO_PATH)
     except:
