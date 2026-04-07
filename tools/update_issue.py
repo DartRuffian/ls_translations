@@ -7,7 +7,7 @@ from github import Github, Auth
 
 TRANSLATION_ISSUE = 16
 
-REPO_USER = "Legion-Studios"
+REPO_USER = "DartRuffian"
 REPO_NAME = "ls_translations"
 REPO_PATH = f"{REPO_USER}/{REPO_NAME}"
 
