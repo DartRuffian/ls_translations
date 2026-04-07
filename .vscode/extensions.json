@@ -1,0 +1,9 @@
+{
+    "recommendations": [
+        "ms-python.python",
+        "ms-python.autopep8",
+        "editorconfig.editorconfig",
+        "zoma.vscode-auto-open-workspace",
+        "aaron-bond.better-comments"
+    ]
+}

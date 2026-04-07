@@ -1,0 +1,22 @@
+name: Update translation progress
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout the source code
+      uses: actions/checkout@v4
+      with:
+        submodules: true
+    - name: Update translation progress
+      run: python tools/update_issue.py
