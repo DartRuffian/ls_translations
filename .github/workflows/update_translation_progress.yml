@@ -23,4 +23,6 @@ jobs:
         pip3 install pygithub
         pip3 install pygithub3
     - name: Update translation progress
+      env:
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
       run: python tools/update_issue.py
