@@ -5,10 +5,9 @@ import subprocess as sp
 from github import Github, Auth
 
 
-TRANSLATION_ISSUE = 16
-
 REPO_USER = "DartRuffian"
 REPO_NAME = "ls_translations"
+REPO_ISSUE = 1
 REPO_PATH = f"{REPO_USER}/{REPO_NAME}"
 
 BRANCH = "master"
@@ -18,7 +17,7 @@ def update_translations(repo):
     diag = sp.check_output(
         ["python3", "tools/translation_progress.py", "--markdown"])
     diag = str(diag, "utf-8")
-    issue = repo.get_issue(TRANSLATION_ISSUE)
+    issue = repo.get_issue(REPO_ISSUE)
     issue.edit(body=diag)
 
 
