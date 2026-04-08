@@ -14,7 +14,8 @@ on:
 
 jobs:
   verify:
-    uses: actions/verify-xml-action@v2
+    name: Verify XML
+    uses: Ahli/verify-xml-action@v2
     with:
       path: "./"
       file-endings: ".xml"
