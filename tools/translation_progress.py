@@ -73,6 +73,8 @@ def main():
     localized_sum = list(map(lambda x: 0, languages))
     missing = list(map(lambda x: [], languages))
 
+    language_names = {"Chinesesimp": "Simplified Chinese"}
+
     for addon in os.listdir(project_path):
         key_number, localized = check_addon(project_path, addon, languages)
 
@@ -98,12 +100,15 @@ def main():
         print("\nTotal number of keys: %i\n" % (key_sum))
 
         for i in range(len(languages)):
+            language = languages[i]
+            language = language_names.get(
+                language, language)  # Prettified names
             if localized_sum[i] == key_sum:
                 print("%s No missing stringtable entries." %
-                      ((languages[i] + ":").ljust(12)))
+                      ((language + ":").ljust(12)))
             else:
                 print("%s %s missing stringtable entry/entries." %
-                      ((languages[i] + ":").ljust(12), str(key_sum - localized_sum[i]).rjust(4)), end="")
+                      ((language + ":").ljust(12), str(key_sum - localized_sum[i]).rjust(4)), end="")
                 print(" ("+", ".join(missing[i])+")")
 
         print("\n\n### MARKDOWN ###\n")
@@ -114,6 +119,8 @@ def main():
     print("|----------|----------------:|--------|--------------|")
 
     for i, language in enumerate(languages):
+        language = language_names.get(language, language)
+
         if localized_sum[i] == key_sum:
             print("| {} | 0 | - | 100% |".format(language))
         else:
@@ -122,6 +129,8 @@ def main():
                 key_sum - localized_sum[i],
                 ", ".join(missing[i]),
                 round(100 * localized_sum[i] / key_sum, 2)))
+
+    print("\n\nThank you to the ACE team for the original script.")
 
 
 if __name__ == "__main__":
