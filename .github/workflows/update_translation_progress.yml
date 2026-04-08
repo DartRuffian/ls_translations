@@ -4,6 +4,9 @@ concurrency:
   group: build-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  issues: write
+
 on:
   workflow_dispatch:
   push:
@@ -24,5 +27,5 @@ jobs:
         pip3 install pygithub3
     - name: Update translation progress
       env:
-        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: python tools/update_issue.py
