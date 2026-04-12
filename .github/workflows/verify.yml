@@ -1,7 +1,7 @@
-name: Verify
+name: Validate
 
 concurrency:
-  group: verify-${{ github.ref }}
+  group: validate-${{ github.ref }}
   cancel-in-progress: true
 
 on:
@@ -22,5 +22,5 @@ jobs:
     steps:
     - name: Checkout the source code
       uses: actions/checkout@v4
-    - name: Validate Config
+    - name: Validate Stringtables
       run: python tools/verify_stringtables.py
