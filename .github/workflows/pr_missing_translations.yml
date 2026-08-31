@@ -1,0 +1,33 @@
+name: Comment on missing translations
+
+concurrency:
+  group: prcomment-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  issues: write
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  translations:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout the source code
+      uses: actions/checkout@v4
+    - name: Install Python Packages
+      run: |
+        pip3 install wheel
+        pip3 install setuptools
+        pip3 install pygithub
+        pip3 install pygithub3
+    - name: Update translation progress
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        OWNER: ${{ context.repo.owner }}
+        REPO: ${{ context.repo.repo }}
+        PR_NUMBER: ${{ context.issue.number }}
+      run: python tools/pr_comment.py
