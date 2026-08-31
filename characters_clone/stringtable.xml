@@ -2,6 +2,9 @@
 <Project name="Legion Studios">
     <Package name="characters_clone">
         <Container name="Backpacks">
+            <Key ID="STR_ls_characters_clone_thisIsATest">
+                <English>This is a test</English>
+            </Key>
             <Key ID="STR_ls_characters_clone_CDV">
                 <English>Clone CDV Jumppack</English>
                 <French>Jumppack CDV</French>
