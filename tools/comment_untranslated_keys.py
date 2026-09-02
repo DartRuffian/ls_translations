@@ -13,11 +13,11 @@ from github import Github, Auth
 
 
 def update_translations(repository,pr_number):
-    pr.create_issue_comment(body="this is a test")
     diag = sp.check_output(
         ["python3", "tools/translation_progress.py", "--markdown"])
     diag = str(diag, "utf-8")
     pr = repository.get_pull(pr_number)
+    pr.create_issue_comment(body="this is a test")
     pr.create_issue_comment(body=diag)
 
 
