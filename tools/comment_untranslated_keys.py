@@ -13,6 +13,7 @@ from github import Github, Auth
 
 
 def update_translations(repository,pr_number):
+    print(f"Commenting on {repository}/{pr_number} | {type(repository)},{type(pr_number)}")
     diag = sp.check_output(
         ["python3", "tools/translation_progress.py", "--markdown"])
     diag = str(diag, "utf-8")
@@ -25,7 +26,7 @@ def main():
     print("Obtaining environment variables ...")
     try:
         token = os.environ["GITHUB_TOKEN"]
-        pr_number = os.environ["PR_NUMBER"]
+        pr_number = int(os.environ["PR_NUMBER"])
         auth = Auth.Token(token)
         repository = Github(auth=auth).get_repo(os.environ["REPOSITORY"])
     except:
