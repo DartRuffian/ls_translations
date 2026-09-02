@@ -24,11 +24,10 @@ def main():
     print("Obtaining environment variables ...")
     try:
         token = os.environ["GITHUB_TOKEN"]
-        owner = os.environ["OWNER"]
-        repo_name = os.environ["REPO"]
+        repository = os.environ["REPOSITORY"]
         pr_number = os.environ["PR_NUMBER"]
         auth = Auth.Token(token)
-        repo = Github(auth=auth).get_repo(f"{owner}/{repo_name}")
+        repo = Github(auth=auth).get_repo(repository)
     except:
         print("Could not obtain vars.")
         print(traceback.format_exc())
