@@ -12,11 +12,12 @@ import subprocess as sp
 from github import Github, Auth
 
 
-def update_translations(repo,pr_number):
+def update_translations(repository,pr_number):
+    pr.create_issue_comment(body="this is a test")
     diag = sp.check_output(
         ["python3", "tools/translation_progress.py", "--markdown"])
     diag = str(diag, "utf-8")
-    pr = repo.get_pull(pr_number)
+    pr = repository.get_pull(pr_number)
     pr.create_issue_comment(body=diag)
 
 
@@ -37,7 +38,7 @@ def main():
 
     print("\nUpdating translation issue ...")
     try:
-        update_translations(repo,pr_number)
+        update_translations(repository,pr_number)
     except:
         print("Failed to update translation issue.")
         print(traceback.format_exc())
