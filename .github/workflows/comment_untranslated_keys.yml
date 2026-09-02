@@ -1,7 +1,7 @@
 name: Comment on missing translations
 
 concurrency:
-  group: prcomment-${{ github.ref }}
+  group: uncommented_keys-${{ github.ref }}
   cancel-in-progress: true
 
 permissions:
@@ -27,7 +27,6 @@ jobs:
     - name: Update translation progress
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        OWNER: ${{ context.repo.owner }}
-        REPO: ${{ context.repo.repo }}
-        PR_NUMBER: ${{ context.issue.number }}
-      run: python tools/pr_comment.py
+        REPOSITORY: ${{ github.repository }}
+        PR_NUMBER: ${{  github.event.number }}
+      run: python tools/comment_untranslated_keys.py
