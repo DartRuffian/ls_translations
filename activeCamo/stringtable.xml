@@ -18,6 +18,7 @@
             <French>Désactiver le camouflage actif</French>
             <Polish>Dezaktywuj kamuflaż optyczny</Polish>
             <Russian>Деактивировать 'Активный камуфляж'</Russian>
+            <FakeLanguage>bleep blorp</FakeLanguage>
         </Key>
     </Package>
 </Project>
