@@ -8,18 +8,17 @@ Comments on a GitHub PR for missing translations
 import os
 import sys
 import traceback
-import subprocess as sp
-from github import Github, Auth
+import subprocess
+import github
 
 
-def update_translations(repository,pr_number):
-    print(f"Commenting on {repository}/{pr_number} | {type(repository)},{type(pr_number)}")
-    diag = sp.check_output(
-        ["python3", "tools/translation_progress.py", "--markdown"])
-    diag = str(diag, "utf-8")
-    pr = repository.get_pull(pr_number)
-    pr.create_issue_comment(body="this is a test")
-    pr.create_issue_comment(body=diag)
+def update_translations(repository: github.Repository.Repository, pr_number: int):
+    pass
+    # diag = subprocess.check_output(
+    #     ["python3", "tools/translation_progress.py", "--markdown"])
+    # diag = str(diag, "utf-8")
+    # pr = repository.get_pull(pr_number)
+    # pr.create_issue_comment(body=diag)
 
 
 def main():
@@ -27,8 +26,9 @@ def main():
     try:
         token = os.environ["GITHUB_TOKEN"]
         pr_number = int(os.environ["PR_NUMBER"])
-        auth = Auth.Token(token)
-        repository = Github(auth=auth).get_repo(os.environ["REPOSITORY"])
+        auth = github.Auth.Token(token)
+        repository = github.Github(auth=auth).get_repo(
+            os.environ["REPOSITORY"])
     except:
         print("Could not obtain vars.")
         print(traceback.format_exc())
@@ -38,7 +38,7 @@ def main():
 
     print("\nUpdating translation issue ...")
     try:
-        update_translations(repository,pr_number)
+        update_translations(repository, pr_number)
     except:
         print("Failed to update translation issue.")
         print(traceback.format_exc())

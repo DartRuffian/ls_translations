@@ -9,9 +9,17 @@ Various stringtable related functions
 import os
 import xml.dom
 import xml.dom.minidom
+from enum import Enum
+
+
+class OUTPUT_MODE(Enum):
+    STDOUT = 0
+    JSON = 1
+    MARKDOWN = 2
 
 
 class Stringtables:
+    """Performs various operations relating to stringtables."""
     @staticmethod
     def supported_languages() -> list[str]:
         # https://community.bistudio.com/wiki/Stringtable.xml#Supported_Languages
@@ -73,8 +81,9 @@ class Stringtables:
 
 def main() -> None:
     print(
-        f"All supported languages:\n{Stringtables.supported_languages()}")
-    print(f"All present languages:\n{Stringtables.get_all_languages(".")}")
+        f"All supported languages:\n{", ".join(Stringtables.supported_languages())}")
+    print(
+        f"All languages present in project:\n{", ".join(Stringtables.get_all_languages("."))}")
 
 
 if __name__ == "__main__":
