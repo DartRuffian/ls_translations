@@ -39,7 +39,7 @@ def get_all_languages(project_path: str) -> list[str]:
 
 
 def check_addon(project_path: str, addon: str, languages: list[str]) -> tuple[int, list[int]]:
-    """Checks the given addon for all the different languages."""
+    """Returns the total number of keys present, and a list with the number of localized keys in order of languages"""
     localized: list[int] = []
 
     stringtable_path = os.path.join(project_path, addon, "stringtable.xml")
@@ -70,8 +70,8 @@ def main():
         print(", ".join(languages))
 
     key_sum = 0
-    localized_sum = list(map(lambda x: 0, languages))
-    missing: list[list[str]] = list(map(lambda x: [], languages))
+    localized_sum = list(map(lambda _: 0, languages))
+    missing: list[list[str]] = list(map(lambda _: [], languages))
 
     language_names = {"Chinesesimp": "Simplified Chinese"}
 
