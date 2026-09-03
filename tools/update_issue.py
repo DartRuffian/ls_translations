@@ -18,8 +18,6 @@ REPO_NAME = "ls_translations"
 REPO_ISSUE = 1
 REPO_PATH = f"{REPO_USER}/{REPO_NAME}"
 
-BRANCH = "master"
-
 
 def update_translations(repo):
     diag = sp.check_output(

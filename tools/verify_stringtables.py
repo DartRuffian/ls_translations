@@ -1,195 +1,137 @@
 #!/usr/bin/env python3
 """
-Author: mharis001, DartRuffian
-Modified from: https://github.com/acemod/ACE3/blob/master/tools/stringtable_validator.py
+Author: KoffeinFlummi, DartRuffian
+Modified from: https://github.com/acemod/ACE3/blob/master/tools/stringtablediag.py
 
-Verifies all stringtable.xml files in the project. Checks for:
-  - Proper XML tree structure.
-  - English as first translation.
-  - No <Original> translation.
-  - Duplicated entries and languages.
+Checks for missing translations and tracks translation progress in a GitHub issue.
+Use --markdown to only return markdown formatted data
 """
 
-import fnmatch
-import os
 import sys
-import xml.etree.ElementTree as ET
-
-PROJECT_NAME = "Legion Studios"
-MOD_PREFIX = "ls"
+import os
+from xml.dom import minidom
 
 
-def check_stringtable(filepath):
-    try:
-        tree = ET.parse(filepath)
-    except Exception as e:
-        print("  ERROR: Failed to parse file. {}".format(e))
-        return 1
+def get_all_languages(project_path: str) -> list[str]:
+    """Checks what languages exist in the repo."""
+    languages: list[str] = []
 
-    errors = 0
+    for addon in os.listdir(project_path):
+        if addon[0] == ".":
+            continue
 
-    # Verify that the root tag is Project and its name attribute is the project name
-    root = tree.getroot()
+        stringtable_path = os.path.join(project_path, addon, "stringtable.xml")
+        try:
+            xml_doc: minidom.Document = minidom.parse(stringtable_path)
+        except:
+            continue
 
-    if root.tag != "Project":
-        print("  ERROR: Invalid root tag '{}' found, must be 'Project'.".format(root.tag))
-        errors += 1
-
-    if root.get("name") != PROJECT_NAME:
-        print("  ERROR: Invalid name attribute '{}' for Project tag, must be '{}'.".format(
-            root.get("name"), PROJECT_NAME))
-        errors += 1
-
-    # Verify that the root has a Package tag and its name attribute matches the component's folder name
-    package = root.find("Package")
-
-    if package is None:
-        print("  ERROR: Failed to find 'Package' tag under 'Project' tag.")
-        errors += 1
-    else:
-        package_name = package.get("name")
-
-        # We want package name to match addon name
-        # if package_name.islower():
-        #     print("  ERROR: Package name attribute '{}' is all lowercase, should be in titlecase.".format(package_name))
-        #     errors += 1
-
-        # Removed .toLower() for same reason as above
-        component_folder = os.path.basename(os.path.dirname(filepath))
-        if package_name != component_folder:
-            print("  ERROR: Package name attribute '{}' does not match the component folder name '{}'.".format(
-                package_name, component_folder))
-            errors += 1
-
-        # Get all keys contained in the stringtable
-        keys = package.findall("Key")
-
-        for container in package.findall("Container"):
-            keys.extend(container.findall("Key"))
-
-        key_ids = []
-        key_prefix = "STR_{}_{}_".format(MOD_PREFIX, package_name)
-
+        keys = xml_doc.getElementsByTagName("Key")
         for key in keys:
-            key_id = key.get("ID")
-
-            # Verify that the key has a valid ID attribute
-            if key_id is None:
-                print("  ERROR: Key '{}' had no ID attribute.".format(key_id))
-                errors += 1
-            elif key_id.find(key_prefix) != 0:
-                if key_id.find("STR_lsb_") == 0:
+            for child in key.childNodes:
+                try:
+                    if not child.tagName in languages:  # type: ignore
+                        languages.append(child.tagName)  # type: ignore
+                except:
                     continue
-                print("  ERROR: Key '{}' does not have a valid ID attribute, should be in format {}{{name}}.".format(
-                    key_id, key_prefix))
-                errors += 1
 
-            key_ids.append(key_id)
+    return languages
 
-            # Verify language entries for the key, check that the key:
-            #   - Contains at least one translation
-            #   - Does not contain an Original translation
-            #   - Has English as the first listed translation
-            #   - Has only one entry for each language
-            entries = list(key)
 
-            if len(entries) == 0:
-                print("  ERROR: Key '{}' has no translation entries.".format(key_id))
-                errors += 1
-            else:
-                if not key.find("Original") is None:
-                    print(
-                        "  ERROR: Key '{}' has an Original translation, unnecessary with English as first.".format(key_id))
-                    errors += 1
+def check_addon(project_path: str, addon: str, languages: list[str]) -> tuple[int, list[int]]:
+    """Checks the given addon for all the different languages."""
+    localized: list[int] = []
 
-                if entries[0].tag != "English":
-                    print(
-                        "  ERROR: Key '{}' does not have its English translation listed first.".format(key_id))
-                    errors += 1
+    stringtable_path = os.path.join(project_path, addon, "stringtable.xml")
+    try:
+        xml_doc = minidom.parse(stringtable_path)
+    except:
+        return 0, localized
 
-                languages = list(map(lambda l: l.tag, entries))
+    key_number = len(xml_doc.getElementsByTagName("Key"))
 
-                for language in set(languages):
-                    count = languages.count(language)
+    for language in languages:
+        localized.append(len(xml_doc.getElementsByTagName(language)))
 
-                    if count > 1:
-                        print("  ERROR: Key '{}' has {} {} translations.".format(
-                            key_id, count, language))
-                        errors += 1
-
-        # Verify that key IDs are unique
-        for id in set(key_ids):
-            count = key_ids.count(id)
-
-            if count > 1:
-                print("  ERROR: Key '{}' is defined {} times.".format(id, count))
-                errors += 1
-
-    # Check whitespace for tabs and correct number of indenting spaces
-    with open(filepath, "r", encoding="utf-8") as file:
-        spacing_depth = 0
-
-        for line_number, line in enumerate(file, 1):
-            if "\t" in line:
-                print("  ERROR: Found a tab on line {}.".format(line_number))
-                errors += 1
-
-            line_clean = line.lstrip().lower()
-
-            if line_clean.startswith("</key") or line_clean.startswith("</package") or line_clean.startswith("</project") or line_clean.startswith("</container"):
-                spacing_depth -= 4
-
-            line_spacing = len(line.lower()) - len(line_clean)
-
-            if line_spacing != spacing_depth:
-                print("  ERROR: Incorrect number of indenting spaces on line {}, currently {}, should be {}.".format(
-                    line_number, line_spacing, spacing_depth))
-                errors += 1
-
-            if line_clean.startswith("<key") or line_clean.startswith("<package") or line_clean.startswith("<project") or line_clean.startswith("<container"):
-                spacing_depth += 4
-
-    return errors
+    return key_number, localized
 
 
 def main():
-    print("Validating Stringtables")
-    print("-----------------------")
+    scriptpath = os.path.realpath(__file__)
+    project_path = os.path.dirname(os.path.dirname(scriptpath))
 
-    # Allow running from root directory and tools directory
-    root_dir = "."
+    languages = get_all_languages(project_path)
 
-    # Check all stringtable.xml files in the project directory
-    stringtable_files = []
+    if "--markdown" not in sys.argv:
+        print("#########################")
+        print("# Stringtable Diag Tool #")
+        print("#########################")
+        print("\nLanguages present in the repo:")
+        print(", ".join(languages))
 
-    for root, _, files in os.walk(root_dir):
-        for file in fnmatch.filter(files, "stringtable.xml"):
-            if (".hemttout" in root):
-                continue
-            stringtable_files.append(os.path.join(root, file))
+    key_sum = 0
+    localized_sum = list(map(lambda x: 0, languages))
+    missing: list[list[str]] = list(map(lambda x: [], languages))
 
-    stringtable_files.sort()
+    language_names = {"Chinesesimp": "Simplified Chinese"}
 
-    bad_count = 0
+    for addon in os.listdir(project_path):
+        key_number, localized = check_addon(project_path, addon, languages)
 
-    for filepath in stringtable_files:
-        print("Checking {}:".format(os.path.relpath(filepath, root_dir)))
+        if key_number == 0:
+            continue
 
-        errors = check_stringtable(filepath)
+        if "--markdown" not in sys.argv:
+            print("\n# " + addon)
 
-        if errors != 0:
-            print("Found {} error(s).".format(errors))
-            bad_count += 1
+        key_sum += key_number
+        for i in range(len(localized)):
+            if "--markdown" not in sys.argv:
+                print("  %s %s / %i" %
+                      ((languages[i]+":").ljust(10), str(localized[i]).ljust(3), key_number))
+            localized_sum[i] += localized[i]
+            if localized[i] < key_number:
+                missing[i].append(addon)
 
-    print()
+    if "--markdown" not in sys.argv:
+        print("\n###########")
+        print("# RESULTS #")
+        print("###########")
+        print("\nTotal number of keys: %i\n" % (key_sum))
 
-    if bad_count == 0:
-        print("Stringtable Validation PASSED")
-    else:
-        print("Stringtable Validation FAILED")
+        for i in range(len(languages)):
+            language = languages[i]
+            language = language_names.get(
+                language, language)  # Prettified names
+            if localized_sum[i] == key_sum:
+                print("%s No missing stringtable entries." %
+                      ((language + ":").ljust(12)))
+            else:
+                print("%s %s missing stringtable entry/entries." %
+                      ((language + ":").ljust(12), str(key_sum - localized_sum[i]).rjust(4)), end="")
+                print(" ("+", ".join(missing[i])+")")
 
-    return bad_count
+        print("\n\n### MARKDOWN ###\n")
+
+    print("Total number of keys: %i\n" % (key_sum))
+
+    print("| Language | Missing Entries | Addons | % Translated |")
+    print("|----------|----------------:|--------|--------------|")
+
+    for i, language in enumerate(languages):
+        language = language_names.get(language, language)
+
+        if localized_sum[i] == key_sum:
+            print("| {} | 0 | - | 100% |".format(language))
+        else:
+            print("| {} | {} | {} | {}% |".format(
+                language,
+                key_sum - localized_sum[i],
+                ", ".join(missing[i]),
+                round(100 * localized_sum[i] / key_sum, 2)))
+
+    print("\n\nThank you to the ACE team for the original script.")
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    main()

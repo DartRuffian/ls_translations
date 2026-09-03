@@ -12,9 +12,9 @@ import os
 from xml.dom import minidom
 
 
-def get_all_languages(project_path):
+def get_all_languages(project_path: str) -> list[str]:
     """Checks what languages exist in the repo."""
-    languages = []
+    languages: list[str] = []
 
     for addon in os.listdir(project_path):
         if addon[0] == ".":
@@ -30,17 +30,17 @@ def get_all_languages(project_path):
         for key in keys:
             for child in key.childNodes:
                 try:
-                    if not child.tagName in languages:
-                        languages.append(child.tagName)
+                    if not child.tagName in languages:  # type: ignore
+                        languages.append(child.tagName)  # type: ignore
                 except:
                     continue
 
     return languages
 
 
-def check_addon(project_path, addon, languages):
+def check_addon(project_path: str, addon: str, languages: list[str]) -> tuple[int, list[int]]:
     """Checks the given addon for all the different languages."""
-    localized = []
+    localized: list[int] = []
 
     stringtable_path = os.path.join(project_path, addon, "stringtable.xml")
     try:
@@ -71,7 +71,7 @@ def main():
 
     key_sum = 0
     localized_sum = list(map(lambda x: 0, languages))
-    missing = list(map(lambda x: [], languages))
+    missing: list[list[str]] = list(map(lambda x: [], languages))
 
     language_names = {"Chinesesimp": "Simplified Chinese"}
 
