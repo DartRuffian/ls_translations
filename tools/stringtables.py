@@ -9,13 +9,6 @@ Various stringtable related functions
 import os
 import xml.dom
 import xml.dom.minidom
-from enum import Enum
-
-
-class OUTPUT_MODE(Enum):
-    STDOUT = 0
-    JSON = 1
-    MARKDOWN = 2
 
 
 class Stringtables:
@@ -44,6 +37,14 @@ class Stringtables:
             "Bulgarian",
             "Hungarian"
         ]
+
+    @staticmethod
+    def prettified_language_name(language: str) -> str:
+        """Returns a prettified version of a language name"""
+        prettified_names: dict[str, str] = {
+            "Chinesesimp": "Simplified Chinese"
+        }
+        return prettified_names.get(language, language)
 
     @staticmethod
     def is_language_supported(language: str) -> bool:
@@ -79,28 +80,38 @@ class Stringtables:
         return languages
 
     @staticmethod
-    def check_missing_translations(project_path: str, languages: list[str]) -> None:
-        """Takes a list of languages and returns a dictionary of addons missing keys for the given languages"""
-        #
-        for addon in os.listdir(project_path):
-            if addon[0] == ".":
-                continue
+    def check_missing_translations(project_path: str, addon: str, languages: list[str]) -> tuple[dict[str, int], set[str]]:
+        """Checks a given addon and returns a dictionary of languages and the number of missing keys for that language, and a set of all translaton keys missing translations for any of the given language."""
+        stringtable_path = os.path.join(
+            project_path, addon, "stringtable.xml")
 
-            stringtable_path = os.path.join(
-                project_path, addon, "stringtable.xml")
-            try:
-                xml_doc = xml.dom.minidom.parse(stringtable_path)
-            except:
-                continue
+        try:
+            xml_doc = xml.dom.minidom.parse(stringtable_path)
+        except:
+            return {}, set()
 
-            keys = xml_doc.getElementsByTagName("Key")
-            for key in keys:
-                for child in key.childNodes:
-                    try:
-                        if not child.tagName in languages:  # type: ignore
-                            languages.append(child.tagName)  # type: ignore
-                    except:
-                        continue
+        keys_missing_translations: set[str] = set()
+        missing_key_counts: dict[str, int] = {}
+        total_key_count = len(xml_doc.getElementsByTagName("Key"))
+
+        for language in languages:
+            language_keys = xml_doc.getElementsByTagName(language)
+            key_count = len(language_keys)
+
+            for key in language_keys:
+                # In a proper structure, the parent should always be another element here, never the document itself
+                parent = key.parentNode
+                if not (isinstance(parent, xml.dom.minidom.Element)):
+                    continue
+
+                translation_key_name = parent.getAttribute("ID")
+                if (translation_key_name == ""):
+                    continue
+                keys_missing_translations.add(translation_key_name)
+            if (key_count != total_key_count):
+                missing_key_counts[language] = total_key_count - key_count
+
+        return missing_key_counts, keys_missing_translations
 
 
 def main() -> None:

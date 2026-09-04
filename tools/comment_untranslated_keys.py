@@ -42,14 +42,15 @@ def extract_added_languages(git_diff: str) -> list[str]:
 
         added_languages.append(language)
 
-    print("\n".join(added_languages))
     return added_languages
 
 
 def main():
     git_diff: str = sys.stdin.read()
     languages = extract_added_languages(git_diff)
-    Stringtables.check_missing_translations(languages)
+    missing = Stringtables.check_missing_translations(
+        ".", "activeCamo", languages)
+    print(missing)
     # print("Obtaining environment variables ...")
     # try:
     #     token = os.environ["GITHUB_TOKEN"]
