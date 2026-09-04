@@ -18,6 +18,8 @@ jobs:
     steps:
     - name: Checkout the source code
       uses: actions/checkout@v4
+      with:
+        fetch-depth: 2 # Checkout creates detached head, need to get commits from the pr itself
     - name: Install Python Packages
       run: |
         pip3 install wheel
@@ -29,4 +31,4 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         REPOSITORY: ${{ github.repository }}
         PR_NUMBER: ${{  github.event.number }}
-      run: python tools/comment_untranslated_keys.py
+      run: git diff HEAD^1 HEAD | python tools/comment_untranslated_keys.py

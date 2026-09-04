@@ -78,6 +78,30 @@ class Stringtables:
 
         return languages
 
+    @staticmethod
+    def check_missing_translations(project_path: str, languages: list[str]) -> None:
+        """Takes a list of languages and returns a dictionary of addons missing keys for the given languages"""
+        #
+        for addon in os.listdir(project_path):
+            if addon[0] == ".":
+                continue
+
+            stringtable_path = os.path.join(
+                project_path, addon, "stringtable.xml")
+            try:
+                xml_doc = xml.dom.minidom.parse(stringtable_path)
+            except:
+                continue
+
+            keys = xml_doc.getElementsByTagName("Key")
+            for key in keys:
+                for child in key.childNodes:
+                    try:
+                        if not child.tagName in languages:  # type: ignore
+                            languages.append(child.tagName)  # type: ignore
+                    except:
+                        continue
+
 
 def main() -> None:
     print(
